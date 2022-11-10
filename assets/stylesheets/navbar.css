@@ -1,0 +1,201 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    --bgcol: black;
+    --txtcol: white;
+    --col1: #01b0f1;
+    --col2: green;
+    --col3: red;
+}
+
+
+.navbar{
+    background-color: var(--col1);
+    /* background-color: #00000048; */
+    /* box-shadow: 5px 5px 10px var(--col1); */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    position: sticky;
+    top: 0px;
+    padding: 7px 20px;
+    width: 97%;
+    height: 7vh;
+}
+
+.navbar > *{
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+
+
+.navitemlist1 a{
+    text-decoration: none;
+    color: var(--txtcol);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navitemlist2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 2px solid blue; */
+    /* width: ; */
+    width: 35vw;
+    justify-content: space-around;
+     font-size: 19px;
+}
+.navitemlist3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 2px solid blue; */
+    width: 10vw;
+    
+    justify-content: space-evenly;
+    /* padding-right: 20px; */
+     
+}
+
+.navitemlist3 img{
+    width: 38px;
+}
+
+.navitems{
+    list-style-type: none;
+}
+
+.navitems a{
+    text-decoration: none;
+    color: var(--txtcol);
+    padding: 0px 5px;
+    /* border-radius: 100px; */
+    border-bottom: 2px solid transparent;
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-weight: 600;
+}
+
+.navitems a:hover{
+    background-color: var(--txtcol);
+    color:var(--col1);
+    transition: all;
+    transition-duration: 0.6s;
+    border-radius: 100px;
+}
+
+.sociallinks{
+    list-style-type: none;
+}
+.sociallinks img{
+    text-decoration: none;
+    color: var(--txtcol);
+    margin: 0px 5px;
+    /* border-radius: 100px; */
+    border: 3px solid transparent;
+    /* box-shadow: 3px 3px 5px var(--col1); */
+}
+
+.sociallinks img:hover{
+    border-bottom: 3px solid var(--txtcol);
+    transition: all;
+    transition-duration: 0.6s;
+    /* box-shadow: 3px 3px 5px var(--txtcol); */
+}
+
+
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    /* padding: 16px; */
+    font-size: 15px;
+    /* text-decoration:overline; */
+    text-decoration: none;
+    color: var(--txtcol);
+    /* padding: 7px 15px; */
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* border-radius: 100px; */
+    border: 0px solid transparent;
+    border-top: 3px solid transparent;
+     
+
+
+
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    cursor: pointer;
+    /* background-color: var(--txtcol); */
+    /* color: black; */
+    border-color: var(--txtcol);
+    color: var(--txtcol);
+    transition: all;
+    transition-duration: 0.6s;
+}
+
+
+
+
+
+/* Custom Scroll Bar */
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey; */
+    border-radius: 0px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    /* background: linear-gradient(90deg,var(--txtcol),var(--col1)); */
+    background: var(--col1);
+    /* background: var(--txtcol); */
+    /* border: 3px solid var(--col1); */
+    border-radius: 100px;
+  }

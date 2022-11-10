@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-07j=8zp8cc=g7pok^xq@n8!8ek%m-b!sh)#=t42*yz1h(s#53#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'machine-learning-model-builder.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['machine-learning-model-builder.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -119,17 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "assets")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
