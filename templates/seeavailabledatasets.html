@@ -1,0 +1,232 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+
+
+
+
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'stylesheets/seeavailabledatasets.css' %}">
+{% comment %} <style>
+
+    body{
+    
+        --bgcol: black;
+        --txtcol: white;
+        --col1: #01b0f1;
+        --col2: green;
+        --col3: red;
+        --col4: #01b1f154;
+        background-color: var(--bgcol);
+        color: var(--txtcol);
+    }
+    
+    
+    .filter{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 10px;
+        margin: 5px;
+    }
+    
+    #search{
+        height: 25px;
+        width: 200px;
+        background-color: transparent;
+        border: 1.5px solid var(--txtcol);
+        color: var(--txtcol);
+        border-radius: 5px;
+    }
+    #search:hover{
+        border-color: var(--col1);
+    }
+    .searchbtn{
+        height: 30px;
+        width: 70px;
+        color: var(--txtcol);
+        background-color: var(--col1);
+        border: 1.5px solid transparent;
+    }
+    .searchbtn:hover{
+        background-color: transparent;
+        color: var(--col1);
+        border-color: var(--col1);
+    }
+    
+    
+    .file_structure{
+        /* display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0px; */
+        display: grid;
+        grid-template-columns: auto auto;
+        text-align: center;
+        margin: 30px 10px;
+    }
+    
+    .file_structure > *{
+        /* background-color: red; */
+        /* display: inline-block; */
+        /* width: 10vw; */
+    }
+    
+    .file_structure > .names{
+        display: flex;
+        flex-direction: column;
+        /* border: 2px solid blue; */
+    }
+    .file_structure > .paths{
+        display: flex;
+        flex-direction: column;
+        /* border: 2px solid blue; */
+    }
+    .file_structure > .directuse{
+        display: flex;
+        flex-direction: column;
+        /* border: 2px solid blue; */
+    }
+    
+    
+    .names a{
+        /* border-top: 2px solid red;
+        border-bottom: 2px solid red; */
+        padding: 10px 0px;    
+        margin: 5px 0px;
+        
+        background-color: rgba(255, 255, 255, 0.026);
+    
+    
+    }
+    .paths a{
+        /* border-top: 2px solid red;
+        border-bottom: 2px solid red; */
+        /* padding: 10px;  */
+        margin: 5px 0px;
+    
+        background-color: var(--txtcol);
+        /* background-color: var(--txtcol); */
+    }
+    .directuse a{
+        /* border-top: 2px solid red;
+        border-bottom: 2px solid red; */
+        /* padding: 10px;  */
+        margin: 5px 0px;
+    
+        background-color: var(--txtcol);
+    }
+    
+    .paths a img{
+        width: 34px;
+    }
+    
+    .directuse a img{
+        width: 34px;
+    }
+    
+
+.searchbtn{
+    height: 30px;
+    width: 70px;
+    color: white;
+    background-color: #01b0f1;
+    border: 1.5px solid transparent;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.searchbtn:hover{
+    background-color: transparent;
+    color: #01b0f1;
+    border-color: #01b0f1;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 0.6s;
+}
+</style> {% endcomment %}
+
+<form action="seeavailabledatasets" method="post">
+    {% csrf_token %}
+    <div class="filter">
+        <label for="search">Search Datasets : &nbsp; </label>
+        <input type="text" name="search" id="search"> &nbsp;
+        <button class="searchbtn" type="submit"> Search</button>
+    </div>
+</form>
+<hr>
+
+<div class="file_structure">
+
+    <div class="names">
+        <h2> Available Datasets </h2> 
+    </div>
+
+    <div class="names">
+        <h2> Download </h2> 
+    </div>
+
+    {% comment %} <div class="names">
+        <h2> Use This </h2> 
+    </div> {% endcomment %}
+
+</div>
+
+
+<div class="file_structure">
+
+    <div class="names">
+        {% for i in file_name_list %}
+            <a>{{i}}.csv</a>
+        {% endfor %}
+    </div>
+    
+    <div class="paths">  
+        {% for i in file_path_list %}
+            <a href="{{i}}"><img src="{% static 'images/download_icon.png' %}" alt=""></a>
+        {% endfor %}
+    </div>
+    
+    {% comment %} <div class="directuse">  
+        {% for i in file_path_list %}
+            <a href="{{i}}"><img src="{% static 'images/usethis_icon.png' %}" alt=""></a>
+        {% endfor %}
+    </div> {% endcomment %}
+
+</div>
+
+{% endblock body %}
+
+
+
+<!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'stylesheets/seeavailabledatasets.css' %}">
+</head>
+<body>
+    <div class="file_structure">
+
+        <div class="names">
+            {% for i in file_name_list %}
+                <a>{{i}}</a>
+            {% endfor %}
+        </div>
+        
+        <div class="paths">  
+            {% for i in file_path_list %}
+                <a href="{{i}}"><img src="{% static 'images/download_icon.png' %}" alt=""></a>
+            {% endfor %}
+        </div>
+    
+    </div>
+</body>
+</html> -->
+

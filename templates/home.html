@@ -1,0 +1,294 @@
+{% extends "navbar.html" %}
+
+
+{% load static %}
+{% block body %}
+
+<!-- <link rel="stylesheet" href="{% static 'stylesheets/home.css' %}"> -->
+
+
+<style>
+
+body{
+    /* font-size: ; */
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    --bgcol: black;
+    --txtcol: white;
+    --col1: #01b0f1;
+    --col2: green;
+    --col3: red;
+    {% comment %} background: url('../static/images/bg.png'); {% endcomment %}
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--txtcol);
+}
+
+.welcome1, .welcome2{
+    margin: 10px;
+}
+
+.welcome2{
+    position: absolute;
+    right: 10px;
+}
+
+
+.body{
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mainbody{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    /* background-color: rgba(194, 194, 194, 0.546);
+    box-shadow: 5px 5px 25px rgba(103, 103, 103, 0.552); */
+    color: black;
+    border-radius: 15px;
+    margin: 0px 5%;
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    
+}
+
+
+/* .mainbody > *{
+    border: 2px solid var(--txtcol3);
+} */
+
+.icon{
+    
+    margin: 0px;
+    padding: 0px;
+}
+.icon img{
+    width: 100px;
+    margin: 0px;
+    /* padding: 40px; */
+    /* border: 2px dashed var(--txtcol); */
+    border-radius: 100px;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+
+.inputgrp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    width: 100%;
+}
+.btngrp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    width: 100%;
+}
+.inputgrp .filename{
+    width: 100%;
+}
+.inputgrp input{
+    font-size: 15px;
+    background-color: transparent;
+    width: 50%;
+}
+
+
+.inputgrp .inputFile{
+    background: linear-gradient(45deg,#007FFF,#FF0E97);
+    border-radius: 7px;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+.inputgrp .filename{
+    background: linear-gradient(225deg,#007FFF,#FF0E97);
+    border-radius: 7px;
+    padding: 7px 10px;
+    /* font-size: 25px; */
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    width: 70%;
+    color: white;
+}
+.inputgrp .filename:hover{
+    background: linear-gradient(45deg,#007FFF,#FF0E97);
+}
+
+.inputgrp >*{
+    margin: 0px;
+}
+.inputgrp{
+    margin: 10px 0px;
+}
+.inputgrp p{
+    font-size: 14px;
+}
+.check{
+    margin: 10px 0px;
+}
+
+.inputgrp .filename img{
+    width: 25px;
+}
+.inputgrp .filename input{
+    width: 80%;
+    border: 0px solid transparent;
+    border-bottom: 1px solid white;
+    padding: 3px 5px;
+    color: white;
+}
+::placeholder{
+    color: white;
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+}
+.inputgrp .filename input :active{
+    border: 0px solid transparent;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.inputgrp .inputFile:hover{
+    background: linear-gradient(135deg,#007FFF,#FF0E97);  
+}
+.inputgrp .inputFile:active{
+    background: linear-gradient(45deg,#007FFF,#FF0E97);  
+}
+.inputgrp .inputFile img{
+    width: 30px;
+    /* border: 2px solid red; */
+    padding: 0px 10px 0px 5px;
+}
+
+form .check{
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+.btngrp .submit{
+    width: 100px;
+    height: 37px;
+    background: linear-gradient(135deg,#007FFF,#FF0E97); 
+    color: white;
+    border: 0px solid transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btngrp .reset{
+    width: 100px;
+    height: 37px;
+    background: linear-gradient(135deg,#007FFF,#FF0E97); 
+    color: white;
+    border: 0px solid transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btngrp .submit:hover{
+    /* border-color: var(--col2); */
+    background: linear-gradient(135deg,green,green); 
+    /* color: var(--col2); */
+    transition: all;
+    transition-duration: 0.6s;
+}
+
+.btngrp .reset:hover{
+    /* border-color: var(--col3); */
+    background: linear-gradient(135deg,red,red); 
+    /* color: var(--col3); */
+    transition: all;
+    transition-duration: 0.6s;
+}
+
+
+
+
+</style> 
+
+<br><br><br><br>
+
+<div class="body">
+    
+    <div class="mainbody">
+        <!-- <div class="icon">
+            <img src="{% static 'images/logo2.png' %}" alt="">
+        </div> -->
+        <form method="post" action="ml" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="inputgrp">
+                <label class="inputFile" for="file"> <img src="{% static 'images/upload-icon.png' %}" alt=""> Upload File</label>
+                <input style="display: none;" type="file" name="file" id="file" accept=".csv" required>
+            </div>
+            
+            <div class="inputgrp">
+                <div class="filename">
+                    <img src="{% static 'images/upload-name.png' %}" alt=""> 
+                    <!-- <p>Enter Name of uploaded file : &nbsp; </p> -->
+                    <input type="text" name="name" id="name" placeholder="Enter name of file" required>
+                    
+                </div>
+                <p>Name should be same as uploaded file</p>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" name="confirm" id="confirm" required>    
+                <label for="confirm">I am ready to build model</label>
+            </div>
+
+            <div class="btngrp">
+                <button class="submit" type="submit">Upload</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="reset" type="reset">Reset</button>
+            </div>
+                
+        </form>
+    </div>
+
+</div>
+
+{% endblock body %}

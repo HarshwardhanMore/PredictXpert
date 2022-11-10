@@ -1,0 +1,138 @@
+{% extends "navbar.html" %} {% load static %} {% block body %}
+
+<link rel="stylesheet" href="{% static 'stylesheets/documentations.css' %}" />
+
+{% comment %} <style>
+  body {
+    --bgcol: black;
+    --txtcol: white;
+    --col1: #01b0f1;
+    --col2: green;
+    --col3: red;
+    background-color: var(--bgcol);
+    color: var(--txtcol);
+  }
+
+  .heading {
+    padding: 20px;
+  }
+
+  .para {
+    margin: 30px 200px;
+    text-align: justify;
+  }
+
+  .ml_img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .ml_img > img{
+    width: 40%;
+    /* padding: 10px; */
+    margin: 10px;
+    border-radius: 15px;
+  }
+  .download_ppt > a{
+      color: white;
+      text-decoration: none;
+  }
+  .download_ppt > a:hover{
+      color: var(--col1);
+  }
+  .model-list{
+      list-style-type:square;
+  }
+  
+</style> {% endcomment %}
+
+<h1 class="heading">Documentations</h1>
+<hr />
+<br />
+<div class="para">
+  <h3>The 7 Key Steps To Build Your Machine Learning Model</h3>
+  <ol>
+    <li>Collect Data</li>
+    <li>Prepare the data</li>
+    <li>Choose the model</li>
+    <li>Train your machine model</li>
+    <li>Evaluation</li>
+    <li>Parameter Tuning</li>
+    <li>Prediction or Inference</li>
+  </ol>
+
+  <hr>
+
+  <div>
+    <h3>1. Data Collection</h3>
+    The quantity & quality of your data dictate how accurate our model is The
+    outcome of this step is generally a representation of data (Guo simplifies
+    to specifying a table) which we will use for training Using pre-collected
+    data, by way of datasets from Kaggle, UCI, etc., still fits into this step
+
+    <h3>2. Data Preparation</h3>
+    Wrangle data and prepare it for training Clean that which may require it
+    (remove duplicates, correct errors, deal with missing values, normalization,
+    data type conversions, etc.) Randomize data, which erases the effects of the
+    particular order in which we collected and/or otherwise prepared our data
+    Visualize data to help detect relevant relationships between variables or
+    class imbalances (bias alert!), or perform other exploratory analysis Split
+    into training and evaluation sets
+
+    <h3>3. Choose a Model</h3>
+    Different algorithms are for different tasks; choose the right one
+
+    <ul class="model-list">
+        <li>Linear Regression</li>
+        <li>Logistic Regression</li>
+        <li>Decision Tree Regressor</li>
+        <li>Decision Tree Classifier</li>
+        <li>Random Forest Regressor</li>
+        <li>Random Forest Classifier</li>
+        <li>Support Vector Machine</li>
+        <li>K-Nearest Nrborg</li>
+    </ul>
+
+
+    <h3>4. Train the Model</h3>
+    The goal of training is to answer a question or make a prediction correctly
+    as often as possible Linear regression example: algorithm would need to
+    learn values for m (or W) and b (x is input, y is output) Each iteration of
+    process is a training step
+
+    <h3>5. Evaluate the Model</h3>
+    Uses some metric or combination of metrics to "measure" objective
+    performance of model Test the model against previously unseen data This
+    unseen data is meant to be somewhat representative of model performance in
+    the real world, but still helps tune the model (as opposed to test data,
+    which does not) Good train/eval split? 80/20, 70/30, or similar, depending
+    on domain, data availability, dataset particulars, etc.
+
+    <h3>6. Parameter Tuning</h3>
+    This step refers to hyperparameter tuning, which is an "artform" as opposed
+    to a science Tune model parameters for improved performance Simple model
+    hyperparameters may include: number of training steps, learning rate,
+    initialization values and distribution, etc.
+
+    <h3>7. Make Predictions</h3>
+    Using further (test set) data which have, until this point, been withheld
+    from the model (and for which class labels are known), are used to test the
+    model; a better approximation of how the model will perform in the real
+    world
+  </div>
+
+  <div class="ml_img">
+
+      <img class="" src="{% static './images/ml_img.png' %}" alt="">
+    </div>
+
+
+    <div class="download_ppt">
+        <a href="{% static 'Presentation.pptx' %}">Download PPT Presentation Slides</a>
+    </div>
+
+</div>
+
+{% endblock body %}

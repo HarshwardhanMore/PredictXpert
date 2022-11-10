@@ -1,0 +1,12 @@
+{% extends 'navbar.html' %}
+
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'stylesheets/manualpredict.css' %}">  
+
+    {% comment %} {{space_saperated_features}} {% endcomment %}
+    {{predicted_values}}
+
+
+{% endblock body %}
