@@ -1,0 +1,2218 @@
+{% load static %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://img.icons8.com/ios-filled/50/f05454/machine-learning.png"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>MLMB | Model</title>
+
+    <style>
+      html {
+        overflow-x: hidden;
+        --col1: #dddddd;
+        --col2: #222831;
+        --col3: #30475e;
+        --col4: #f05454;
+      }
+
+      html * {
+        margin: 0px;
+        overflow-x: hidden;
+      }
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        /* box-shadow: inset 0 0 5px grey; */
+        background-color: transparent;
+        /* border-radius: 10px; */
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: transparent;
+        /* border-radius: 10px; */
+        /* display: hidden; */
+      }
+
+      body {
+        /* display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center ; */
+
+        background-color: var(--bgcol);
+        color: var(--col1);
+        /* background: linear-gradient(135deg, #f7cd69, #f368d4); */
+        background: var(--col2);
+        overflow: hidden;
+
+        /* font: monospace; */
+
+        font-family: "Share Tech Mono", monospace;
+        margin: 0px;
+        padding: 0px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+      }
+      .options {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+        background: var(--col2);
+      }
+      .options > button {
+        height: 10%;
+        width: 90%;
+        font-size: 18px;
+        font: "Share Tech Mono";
+        /* border: 1px solid var(--col2); */
+        /* border-bottom: 5px solid var(--col2); */
+        border: none;
+        border-left: 5px solid var(--col2);
+        background: var(--col2);
+        color: var(--col1);
+        cursor: pointer;
+
+        font-family: "Share Tech Mono", monospace;
+      }
+      .options > button:hover {
+        border-right-color: var(--col4);
+      }
+
+      .main .model {
+        width: 100%;
+        height: 90%;
+        /* background: var(--col4); */
+        overflow: hidden;
+        display: none;
+      }
+      .main .model form {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+      .main .model form .inputgrp {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: row;
+      }
+      .main .model form .hideName {
+        display: none;
+      }
+      .main .model form .inputgrp .heading {
+        width: 30%;
+        /* height: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border-right: 2px solid var(--col1); */
+        background: var(--col1);
+        color: var(--col2);
+        border-bottom: 2px solid var(--col2);
+        font-size: 18px;
+      }
+      .main .model form .inputgrp .content {
+        width: 70%;
+        padding: 15px 0px;
+        padding-left: 15px;
+        border-bottom: 2px solid var(--col1);
+      }
+      .main .model form .inputgrp .content > * {
+        padding: 10px 0px;
+      }
+
+      .main .model form .btns {
+        width: 100%;
+        padding: 15px 0px;
+        display: flex;
+      }
+      .main .model form .btns .heading {
+        width: 30%;
+      }
+      .main .model form .btns .content {
+        width: 70%;
+      }
+      .main .model form .btns .content > * {
+        padding: 7px 20px;
+        background: var(--col4);
+        color: var(--col1);
+        border: 2px solid transparent;
+        border-radius: 7px;
+      }
+      .model .reset {
+        border: 2px solid var(--col4);
+        background: transparent;
+        color: var(--col4);
+      }
+
+      /*  */
+
+      .data-table {
+        width: 100%;
+        height: 90%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        text-align: left;
+        display: none;
+        flex-direction: column;
+      }
+
+      .data-table h1 {
+        text-align: center;
+      }
+
+      .data-table .table-div {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        /* background: var(--col1); */
+      }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .data-table tr {
+      }
+
+      .data-table th {
+        padding: 7px 15px;
+        background: var(--col1);
+        color: var(--col2);
+      }
+      .data-table thead th {
+        background: var(--col2);
+        color: var(--col1);
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: var(--col1);
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--col4);
+      }
+
+      .correlation {
+        overflow: hidden;
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px;
+        padding: 0px 20px;
+      }
+      .correlation .table-div {
+        overflow: scroll;
+        width: 100%;
+        height: 100%;
+      }
+      /* .correlation .table-div table {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+      } */
+
+      /* .correlation .heatmap {
+        width: 40%;
+        height: 100%;
+        overflow: scroll;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } */
+
+      /* .correlation .container .heatmap img {
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      } */
+
+      .correlation tr {
+      }
+
+      .correlation th {
+        padding: 7px 15px;
+      }
+      .correlation thead th {
+        background: var(--col1);
+        color: var(--col2);
+        padding: 7px 15px;
+      }
+
+      .main .lodeddata {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 90%;
+        overflow-y: scroll;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .lodeddata .inputgrp {
+        width: 100%;
+        display: flex;
+      }
+      .lodeddata .heading {
+        width: 30%;
+        background: var(--col1);
+        color: var(--col2);
+        border-bottom: 2px solid var(--col2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .lodeddata .content {
+        width: 70%;
+        background: var(--col2);
+        color: var(--col1);
+        border-bottom: 2px solid var(--col1);
+        padding: 15px 0px;
+        padding-left: 15px;
+      }
+      .lodeddata .columns {
+        display: flex;
+        flex-direction: row;
+        padding: 0px 0px;
+        padding-left: 15px;
+      }
+      .lodeddata .columns .col {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+      }
+      .lodeddata .columns .col > * {
+        width: 100%;
+        padding: 10px 0px;
+      }
+
+      .main > * > h1 {
+        margin-top: 10%;
+      }
+      .correlation {
+        display: none;
+      }
+
+      .main .plots {
+        width: 100%;
+        height: 90%;
+        /* background: var(--col4); */
+        overflow: hidden;
+        display: flex;
+      }
+      .main .plots form {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+      .main .plots form .inputgrp {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: row;
+      }
+      .main .plots form .hideName {
+        display: none;
+      }
+      .main .plots form .inputgrp .heading {
+        width: 30%;
+        /* height: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border-right: 2px solid var(--col1); */
+        background: var(--col1);
+        color: var(--col2);
+        border-bottom: 2px solid var(--col2);
+        font-size: 18px;
+      }
+      .main .plots form .inputgrp .content {
+        width: 70%;
+        padding: 15px 0px;
+        padding-left: 15px;
+        border-bottom: 2px solid var(--col1);
+      }
+      .main .plots form .inputgrp .content > * {
+        padding: 10px 0px;
+      }
+
+      .main .plots form .btns {
+        width: 100%;
+        padding: 15px 0px;
+        display: flex;
+      }
+      .main .plots form .btns .heading {
+        width: 30%;
+      }
+      .main .plots form .btns .content {
+        width: 70%;
+      }
+      .main .plots form .btns .content > * {
+        padding: 7px 20px;
+        background: var(--col4);
+        color: var(--col1);
+        border: 2px solid transparent;
+        border-radius: 7px;
+      }
+      .plots .reset {
+        border: 2px solid var(--col4);
+        background: transparent;
+        color: var(--col4);
+      }
+
+      /*  */
+    </style>
+  </head>
+  <body oncontextmenu="return false">
+    <div class="options">
+      <button class="dynamic-change-btn" id="view-dataset-btn">
+        VIEW DATASET
+      </button>
+      <button class="dynamic-change-btn" id="view-correlation-btn">
+        CORRELATIONS
+      </button>
+      <button class="dynamic-change-btn" id="view-plots">PLOTS</button>
+      <button class="dynamic-change-btn" id="meta-data-btn">META DATA</button>
+      <!-- <button class="dynamic-change-btn" id="build-plots-btn">PLOTS</button> -->
+      <button class="dynamic-change-btn" id="build-model-btn">
+        BUILD MODEL
+      </button>
+    </div>
+
+    <div class="main">
+      <div class="data-table" id="data-table">
+        <!-- <h1>Dataset</h1> -->
+        <div class="table-div">
+          <table>
+            <thead>
+              <tr>
+                {% for i in columns %}
+                <th>{{i}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data_table %}
+              <tr>
+                {% for j in i %}
+                <th>{{j}}</th>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="correlation" id="correlation">
+        <!-- <div class="container"> -->
+        <div class="table-div">
+          <table>
+            <thead>
+              <tr>
+                {% for i in columns %}
+                <th>{{i}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in correlation_table %}
+              <tr>
+                <th></th>
+
+                {% for j in i %}
+                <th>{{j}}</th>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- </div> -->
+        <!-- <div class="heatmap">
+          <img src="{% static './plots/heatmap.png' %}" alt="" />
+        </div> -->
+      </div>
+
+      <!-- <div class="lodeddata" id="lodeddata">
+        <div class="datadetails">
+          <div class="datadetailsupper">
+            <div class="dataitem">&nbsp;&nbsp; File Name</div>
+            <div class="dataitem">&nbsp;&nbsp; {{filename}}.csv</div>
+            <div class="dataitem">&nbsp;&nbsp; Data Size</div>
+            <div class="dataitem">&nbsp;&nbsp; {{dataframe.size}}</div>
+            <div class="dataitem">&nbsp;&nbsp; Total Rows</div>
+            <div class="dataitem">&nbsp;&nbsp; {{rowscount}}</div>
+            <div class="dataitem">&nbsp;&nbsp; Total Columns</div>
+            <div class="dataitem">&nbsp;&nbsp; {{columncount}}</div>
+          </div>
+
+          <div>
+            <h3>Columns</h3>
+            <div class="datadetailslower">
+              <div class="columns">
+                {% for i in columns %}
+                <p>&nbsp;&nbsp; {{i}}</p>
+                {% endfor %}
+              </div>
+              <div class="columns">
+                {% for i in columntype %}
+                <p>&nbsp;&nbsp; {{i}}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div id="lodeddata" class="lodeddata">
+        <div class="inputgrp">
+          <div class="heading">File Name</div>
+          <div class="content">{{filename}}</div>
+        </div>
+        <div class="inputgrp">
+          <div class="heading">Data Size</div>
+          <div class="content">{{dataframe.size}}</div>
+        </div>
+        <div class="inputgrp">
+          <div class="heading">Total Rows</div>
+          <div class="content">{{rowscount}}</div>
+        </div>
+        <div class="inputgrp">
+          <div class="heading">Total Columns</div>
+          <div class="content">{{columncount}}</div>
+        </div>
+        <div class="inputgrp">
+          <div class="heading">Columns</div>
+          <div class="content columns">
+            <div class="col">
+              {% for i in columns %}
+              <div>{{i}}</div>
+              {% endfor %}
+            </div>
+            <div class="col">
+              {% for i in columntype %}
+              <div>{{i}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <h3>Columns</h3>
+          <div class="datadetailslower">
+            
+          </div>
+        </div> -->
+      </div>
+
+      <div id="plots" class="plots">
+        <form action="" method="post">
+          {% csrf_token %}
+
+          <div class="inputgrp">
+            <div class="heading">Plots</div>
+            <div class="content">
+              <div class="line-plot">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="lineplot"
+                  value="lineplot"
+                />
+                <label onclick="changeBorder(i)" for="lineplot"
+                  >Line Plot</label
+                >
+              </div>
+              <div id="scatter-plot">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="scatterplot"
+                  value="scatterplot"
+                />
+                <label onclick="changeBorder(i)" for="scatterplot"
+                  >Scatter Plot</label
+                >
+              </div>
+              <div id="histo-gram">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="histogram"
+                  value="histogram"
+                />
+                <label onclick="changeBorder(i)" for="histogram"
+                  >Histogram</label
+                >
+              </div>
+              <div id="count-plot">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="countplot"
+                  value="countplot"
+                />
+                <label onclick="changeBorder(i)" for="countplot"
+                  >Count Plot</label
+                >
+              </div>
+              <div id="pair-plot">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="pairplot"
+                  value="pairplot"
+                />
+                <label onclick="changeBorder(i)" for="pairplot"
+                  >Pair Plot</label
+                >
+              </div>
+              <div id="bar-chart">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="barchart"
+                  value="barchart"
+                />
+                <label onclick="changeBorder(i)" for="barchart"
+                  >Bar Chart</label
+                >
+              </div>
+              <div id="pie-chart">
+                <input
+                  required
+                  type="radio"
+                  name="plot_type"
+                  id="piechart"
+                  value="piechart"
+                />
+                <label onclick="changeBorder(i)" for="piechart"
+                  >Pie Chart</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="inputgrp">
+            <div class="heading">Plot Parameter 1</div>
+            <div class="content">
+              {% for i in columns %}
+              <div>
+                <input
+                  required
+                  type="radio"
+                  name="plot_parameter1"
+                  id="col1-{{i}}"
+                  value="{{i}}"
+                />
+                <label id="col1{{i}}" onclick="changeBorder(i)" for="col1-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="inputgrp">
+            <div class="heading">Plot Parameter 2</div>
+            <div class="content">
+              {% for i in columns %}
+              <div>
+                <input
+                  required
+                  type="radio"
+                  name="plot_parameter2"
+                  id="col2-{{i}}"
+                  value="{{i}}"
+                />
+                <label id="col2{{i}}" onclick="changeBorder(i)" for="col2-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="btns">
+            <div class="heading"></div>
+            <div class="content">
+              <button type="submit" class="build">Build</button>
+              <button type="reset" class="reset">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="model" class="model">
+        <form action="predict" method="post">
+          {% csrf_token %}
+
+          <div class="inputgrp hideName">
+            <h2 for="name">File Name</h2>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter dataset file name"
+              autocomplete="off"
+              value="{{filename}}"
+            />
+          </div>
+
+          <div class="inputgrp">
+            <div class="heading">Model Type</div>
+            <div class="content modelType">
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="regression"
+                  name="modelType"
+                  value="regression"
+                />
+                <label for="regression">Regression</label><br />
+              </div>
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="classification"
+                  name="modelType"
+                  value="classification"
+                />
+                <label for="classification">Classification</label><br />
+              </div>
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="auto detect"
+                  name="modelType"
+                  value="auto detect"
+                />
+                <label for="auto detect">Auto Detect</label><br />
+              </div>
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <div class="heading">Model</div>
+            <div class="content algorithmTypes">
+              <div class="grp reg">
+                <input type="radio" id="lr" name="algorithmType" value="lr" />
+                <label for="lr">Linear Regression</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="lrc" name="algorithmType" value="lrc" />
+                <label for="lrc">Logistic Regression (Classification)</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="rlr" name="algorithmType" value="rlr" />
+                <label for="rlr">Ridge & Lasso (Regression)</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="nbc" name="algorithmType" value="nbc" />
+                <label for="nbc">Naive Baye's (Classification)</label>
+              </div>
+              <div class="grp reg">
+                <input
+                  type="radio"
+                  id="knnr"
+                  name="algorithmType"
+                  value="knnr"
+                />
+                <label for="knnr">K-Nearest Neighbors Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input
+                  type="radio"
+                  id="knnc"
+                  name="algorithmType"
+                  value="knnc"
+                />
+                <label for="knnc">K-Nearest Neighbors Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="dtr" name="algorithmType" value="dtr" />
+                <label for="dtr">Decision Tree Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="dtc" name="algorithmType" value="dtc" />
+                <label for="dtc">Decision Tree Classifier </label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="rfr" name="algorithmType" value="rfr" />
+                <label for="rfr">Random Forest Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="rfc" name="algorithmType" value="rfc" />
+                <label for="rfc">Random Forest Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input
+                  type="radio"
+                  id="svmr"
+                  name="algorithmType"
+                  value="svmr"
+                />
+                <label for="svmr">Support Vector Machine Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input
+                  type="radio"
+                  id="svmc"
+                  name="algorithmType"
+                  value="svmc"
+                />
+                <label for="svmc">Support Vector Machine Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="xr" name="algorithmType" value="xr" />
+                <label for="xr">Xgboost Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="xc" name="algorithmType" value="xc" />
+                <label for="xc">Xgboost Classifier</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <div class="heading">Features</div>
+
+            <div class="content features">
+              {% for i in columns %}
+              <div>
+                <input
+                  type="checkbox"
+                  name="features"
+                  id="feature-{{i}}"
+                  value="{{i}}"
+                />
+                <label onclick="changeBorder(i)" for="feature-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <div class="heading">Labels</div>
+
+            <div class="content labels">
+              {% for i in columns %}
+              <div>
+                <input
+                  type="radio"
+                  name="labels"
+                  id="label-{{i}}"
+                  value="{{i}}"
+                />
+                <label
+                  id="label{{i}}"
+                  onclick="changeBorder(i)"
+                  for="label-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="btns">
+            <div class="heading"></div>
+            <div class="content">
+              <button type="submit" class="build">Build</button>
+              <button type="reset" class="reset">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- ----------------------------------------------------------------- -->
+    </div>
+
+    <script>
+      document.getElementById("data-table").style.display = "none";
+      document.getElementById("correlation").style.display = "none";
+      document.getElementById("plots").style.display = "flex";
+      document.getElementById("model").style.display = "none";
+      document.getElementById("lodeddata").style.display = "none";
+
+      //
+
+      document.getElementById("view-plots").style.borderColor = "#f05454";
+      document.getElementById("view-plots").style.color = "#f05454";
+
+      document
+        .getElementById("view-dataset-btn")
+        .addEventListener("click", myFunction1);
+      document
+        .getElementById("view-correlation-btn")
+        .addEventListener("click", myFunction2);
+      document
+        .getElementById("view-plots")
+        .addEventListener("click", myFunction3);
+      document
+        .getElementById("build-model-btn")
+        .addEventListener("click", myFunction4);
+      document
+        .getElementById("meta-data-btn")
+        .addEventListener("click", myFunction5);
+
+      function myFunction1() {
+        if (document.getElementById("data-table").style.display != "flex") {
+          document.getElementById("data-table").style.display = "flex";
+          document.getElementById("correlation").style.display = "none";
+          document.getElementById("plots").style.display = "none";
+          document.getElementById("model").style.display = "none";
+          document.getElementById("lodeddata").style.display = "none";
+
+          //
+
+          document.getElementById("view-dataset-btn").style.borderColor =
+            "#f05454";
+          document.getElementById("view-correlation-btn").style.borderColor =
+            "transparent";
+          document.getElementById("view-plots").style.borderColor =
+            "transparent";
+          document.getElementById("build-model-btn").style.borderColor =
+            "transparent";
+          document.getElementById("meta-data-btn").style.borderColor =
+            "transparent";
+          document.getElementById("view-dataset-btn").style.color = "#f05454";
+          document.getElementById("view-correlation-btn").style.color =
+            "#dddddd";
+          document.getElementById("view-plots").style.color = "#dddddd";
+          document.getElementById("build-model-btn").style.color = "#dddddd";
+          document.getElementById("meta-data-btn").style.color = "#dddddd";
+        }
+      }
+
+      function myFunction2() {
+        if (document.getElementById("correlation").style.display != "flex") {
+          document.getElementById("data-table").style.display = "none";
+          document.getElementById("correlation").style.display = "flex";
+          document.getElementById("plots").style.display = "none";
+          document.getElementById("model").style.display = "none";
+          document.getElementById("lodeddata").style.display = "none";
+
+          //
+
+          document.getElementById("view-dataset-btn").style.borderColor =
+            "transparent";
+          document.getElementById("view-correlation-btn").style.borderColor =
+            "#f05454";
+          document.getElementById("view-plots").style.borderColor =
+            "transparent";
+          document.getElementById("build-model-btn").style.borderColor =
+            "transparent";
+          document.getElementById("meta-data-btn").style.borderColor =
+            "transparent";
+          document.getElementById("view-dataset-btn").style.color = "#dddddd";
+          document.getElementById("view-correlation-btn").style.color =
+            "#f05454";
+          document.getElementById("view-plots").style.color = "#dddddd";
+          document.getElementById("build-model-btn").style.color = "#dddddd";
+          document.getElementById("meta-data-btn").style.color = "#dddddd";
+        }
+      }
+
+      function myFunction3() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "flex";
+        document.getElementById("model").style.display = "none";
+        document.getElementById("lodeddata").style.display = "none";
+
+        //
+
+        document.getElementById("view-dataset-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-correlation-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-plots").style.borderColor = "#f05454";
+        document.getElementById("build-model-btn").style.borderColor =
+          "transparent";
+        document.getElementById("meta-data-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-dataset-btn").style.color = "#dddddd";
+        document.getElementById("view-correlation-btn").style.color = "#dddddd";
+        document.getElementById("view-plots").style.color = "#f05454";
+        document.getElementById("build-model-btn").style.color = "#dddddd";
+        document.getElementById("meta-data-btn").style.color = "#dddddd";
+      }
+
+      function myFunction4() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "none";
+        document.getElementById("model").style.display = "flex";
+        document.getElementById("lodeddata").style.display = "none";
+
+        //
+
+        document.getElementById("view-dataset-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-correlation-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-plots").style.borderColor = "transparent";
+        document.getElementById("build-model-btn").style.borderColor =
+          "#f05454";
+        document.getElementById("meta-data-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-dataset-btn").style.color = "#dddddd";
+        document.getElementById("view-correlation-btn").style.color = "#dddddd";
+        document.getElementById("view-plots").style.color = "#dddddd";
+        document.getElementById("build-model-btn").style.color = "#f05454";
+        document.getElementById("meta-data-btn").style.color = "#dddddd";
+      }
+
+      function myFunction5() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "none";
+        document.getElementById("model").style.display = "none";
+        document.getElementById("lodeddata").style.display = "flex";
+
+        //
+
+        document.getElementById("view-dataset-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-correlation-btn").style.borderColor =
+          "transparent";
+        document.getElementById("view-plots").style.borderColor = "transparent";
+        document.getElementById("build-model-btn").style.borderColor =
+          "transparent";
+        document.getElementById("meta-data-btn").style.borderColor = "#f05454";
+        document.getElementById("view-dataset-btn").style.color = "#dddddd";
+        document.getElementById("view-correlation-btn").style.color = "#dddddd";
+        document.getElementById("view-plots").style.color = "#dddddd";
+        document.getElementById("build-model-btn").style.color = "#dddddd";
+        document.getElementById("meta-data-btn").style.color = "#f05454";
+      }
+
+      function changeBorder(i) {
+        document.getElementById("feature" + i).style.background = "red";
+      }
+    </script>
+  </body>
+</html>
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.png" />
+
+    <title>MLMB | Model</title>
+
+    <style>
+      html {
+        overflow-x: hidden;
+      }
+
+      html * {
+        margin: 0px;
+      }
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        /* box-shadow: inset 0 0 5px grey; */
+        background-color: transparent;
+        /* border-radius: 10px; */
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: transparent;
+        /* border-radius: 10px; */
+        /* display: hidden; */
+      }
+
+      body {
+        /* display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center ; */
+        --bgcol: black;
+        --txtcol: black;
+        --col1: #01b0f1;
+        --col2: green;
+        --col3: red;
+
+        background-color: var(--bgcol);
+        color: var(--txtcol);
+        background: linear-gradient(135deg, #f7cd69, #f368d4);
+
+        overflow: hidden;
+
+        font-family: "Raleway", sans-serif;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .main .model {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        /* background-color: red; */
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .main .model .modelheading {
+        border: 2px solid red;
+      }
+
+      .main form {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        width: 80%;
+        height: 80%;
+        overflow-y: scroll;
+        align-self: center;
+        /* padding: 40px 0px; */
+        /* margin: 10px 0px 0px 0px; */
+
+        /* From https://css.glass */
+        /* background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3); */
+
+        /* border: 2px solid red; */
+      }
+
+      form > * {
+        /* background-color: red; */
+
+        margin: 35px 0px;
+        background: rgba(255, 255, 255, 0.071);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.211);
+        padding: 20px 10px;
+        width: 90%;
+      }
+
+      form .inputgrp:hover {
+        /* transform: scale(1.02); */
+        /* padding: 25px 15px;
+    transition: all;
+    transition-duration: 300ms; */
+      }
+
+      form > * > * {
+        margin: 20px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      .inputgrp {
+        /* display: grid;
+    grid-template-columns: auto; */
+      }
+
+      .inputgrp #model {
+        /* height: 35px;
+width: 80%; */
+      }
+
+      /* ************************************************ */
+      .inputgrp > input {
+        height: 30px;
+        width: 80%;
+        padding-left: 10px;
+        border: 0px solid var(--txtcol);
+        border-bottom: 1px solid rgb(99, 99, 99);
+        background-color: transparent;
+        color: var(--txtcol);
+      }
+
+      ::placeholder {
+        color: black;
+        font-family: "Raleway", sans-serif;
+      }
+
+      /* ************************************************ */
+      .inputgrp #model {
+        height: 35px;
+        width: 84%;
+        padding-left: 10px;
+        border: 0px solid var(--txtcol);
+        border-bottom: 1px solid rgb(99, 99, 99);
+        background-color: transparent;
+        color: var(--txtcol);
+      }
+
+      .inputgrp #model option {
+        background: #f7cd69;
+        color: black;
+      }
+
+      .checkboxgrp {
+        /* width: 75%; */
+      }
+
+      /************************** RADIO *************************  */
+      /* 
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+} */
+
+      /* ******************************************** */
+
+      .inputgrp .modelType {
+      }
+
+      .inputgrp .modelType > * {
+        width: 100%;
+        margin: 7px 0px;
+        display: flex;
+        flex-direction: row;
+        /* accent-color: #f368d4; */
+      }
+
+      .inputgrp .modelType > * > * {
+        margin: 0px 5px;
+      }
+
+      .inputgrp .modelType > * label {
+        /* accent-color: #f368d4; */
+
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .inputgrp .modelType > * label {
+        width: 100%;
+        display: block;
+        padding: 10px 10px;
+        /* border-radius: 7px; */
+
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /*  */
+
+      .inputgrp .algorithmTypes > * {
+        width: 100%;
+        margin: 7px 0px;
+        display: flex;
+        flex-direction: row;
+
+        /* accent-color: #f368d4; */
+      }
+
+      .inputgrp .algorithmTypes > * > * {
+        margin: 0px 5px;
+      }
+
+      .inputgrp .algorithmTypes > * > input {
+        /* accent-color: #f368d4; */
+      }
+
+      .inputgrp .algorithmTypes > * label {
+        width: 100%;
+        display: block;
+        padding: 10px 10px;
+        /* border-radius: 7px; */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /*  */
+
+      .noNeedBg {
+        background: none;
+      }
+
+      .diffBg {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .btns {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0px;
+        width: 90%;
+        justify-content: space-evenly;
+        background: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .btns button {
+        color: white;
+        padding: 8px 30px;
+        /* margin: 0px 20px; */
+        border-radius: 100px;
+        border: 2.5px solid var(--col1);
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 400;
+
+        color: black;
+
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-family: "Raleway", sans-serif;
+
+        width: 30%;
+      }
+
+      .btns .build:hover {
+        background-color: transparent;
+        color: var(--col2);
+        border-color: var(--col2);
+        transition: all;
+        transition-duration: 0.6s;
+      }
+
+      .btns .reset:hover {
+        background-color: transparent;
+        color: var(--col3);
+        border-color: var(--col3);
+        transition: all;
+        transition-duration: 0.6s;
+      }
+
+      .data-table {
+        width: 90%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .data-table h1 {
+        text-align: center;
+      }
+
+      .data-table .table-div {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: flex-start; */
+        margin: 20px 0px;
+        padding: 0px 20px;
+      }
+
+      .correlation {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: flex-start; */
+        margin: 20px 0px;
+        padding: 0px 20px;
+        /* background-color: red; */
+      }
+
+      .correlation .container {
+        overflow: hidden;
+        /* overflow-y: scroll; */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 20px 0px;
+        padding: 0px 20px;
+      }
+
+      .correlation .container > * {
+        /* margin: 20px 0px; */
+        width: 50%;
+        /* background-color: red; */
+      }
+
+      .correlation .container .table-div {
+        /* margin: 20px 0px; */
+        /* width: 100%; */
+        overflow: scroll;
+        text-align: left;
+        width: 55%;
+      }
+
+      .correlation .container .heatmap {
+        /* margin: 20px 0px; */
+        /* width: 100%; */
+        width: 40%;
+        height: 100%;
+        overflow: scroll;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .correlation .container .heatmap img {
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .correlation tr {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        /* border-radius: 16px; */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* font-family: 'Raleway', sans-serif; */
+      }
+
+      .correlation th {
+        padding: 7px 15px;
+        margin: 5px;
+      }
+
+      .data-table > * {
+      }
+
+      .data-table > * {
+        /* padding: 10px;
+margin: 20px 10px; */
+      }
+
+      .data-table tr {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        /* border-radius: 16px; */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* font-family: 'Raleway', sans-serif; */
+      }
+
+      .data-table th {
+        padding: 7px 15px;
+        margin: 5px;
+      }
+
+      .main .lodeddata {
+        display: none;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        width: 35%;
+        padding-top: 20px;
+        height: 100vh;
+        padding-right: 5px;
+      }
+
+      .lodeddataheading {
+        text-align: left;
+      }
+
+      .datadetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* grid-template-columns: auto; */
+        width: 80%;
+        height: 64%;
+        padding: 40px 20px;
+
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .datadetails .subdatadetails {
+        width: 90%;
+        height: 100%;
+        overflow-y: scroll;
+      }
+
+      .datadetails .subdatadetails h3 {
+        text-align: center;
+      }
+
+      .datadetailsupper {
+        display: grid;
+        grid-template-columns: auto auto;
+        /* text-align: center  ; */
+      }
+
+      .datadetailsupper > * {
+        /* From https://css.glass */
+        /* background: rgba(255, 255, 255, 0.2);
+border-radius: 0px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3); */
+
+        margin: 5px 0px;
+        padding: 5px 0px;
+      }
+
+      .datadetailslower {
+        display: grid;
+        grid-template-columns: auto auto;
+        /* border: 2px solid var(--col3); */
+      }
+
+      .datadetailslower .columns {
+        display: grid;
+        grid-template-columns: auto;
+        padding-top: 7px;
+        /* padding-bottom: 2px; */
+      }
+
+      .datadetailslower .columns > * {
+        /* background-color: var(--bgcol); */
+        margin: 0px 0px 7px 0px;
+        padding: 5px 0px;
+
+        border: 0px;
+        border-bottom: 1px solid rgb(99, 99, 99);
+      }
+
+      .main > * > h1 {
+        margin-top: 10%;
+      }
+
+      /*  */
+
+      .options {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 00px;
+        left: 0px;
+        z-index: 1;
+        /* background-color: red; */
+        background: rgba(255, 255, 255, 0.071);
+        border-radius: 0px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.211);
+        height: 10%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 45%;
+      }
+
+      .dynamic-change-btn {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* margin: 10px 0px; */
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .dynamic-change-btn:hover {
+        /* margin: 2px 2px; */
+        /* padding: 8px 18px; */
+        /* border: 0px; */
+        background-color: transparent;
+      }
+
+      .correlation {
+        display: none;
+      }
+
+      .plots {
+        display: none;
+      }
+
+      .inputgrp > .features {
+        /* border: 2px solid red; */
+        /* width: 80%; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .inputgrp > .features > * {
+        /* margin: 10px 10px 0px 0px; */
+        /* padding: 10px; */
+
+        /* width: 100%; */
+        width: max-content;
+        /* display: block; */
+        /* border: 1px solid yellow; */
+        margin: 5px;
+      }
+
+      .inputgrp > .features input {
+        /* display: none; */
+        /* accent-color: #f368d4; */
+        /* -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none; */
+      }
+
+      .inputgrp > .features label {
+        /* border-radius: 7px; */
+        display: block;
+        padding: 10px 20px;
+        /* border: 1px solid green; */
+
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .inputgrp > .labels {
+        /* border: 2px solid red; */
+        /* width: 80%; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .inputgrp > .labels > * {
+        /* margin: 10px 10px 0px 0px; */
+        /* padding: 10px; */
+
+        /* width: 100%; */
+        width: max-content;
+        /* display: block; */
+        /* border: 1px solid yellow; */
+        margin: 5px;
+      }
+
+      .inputgrp > .labels input {
+        /* display: none; */
+        accent-color: #f368d4;
+        /* f7cd69, #f368d4 */
+      }
+
+      .inputgrp > .labels label {
+        /* border-radius: 7px; */
+        display: block;
+        padding: 10px 20px;
+        /* border: 1px solid green; */
+
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .hideName {
+        display: none;
+      }
+    </style>
+  </head>
+  <body oncontextmenu="return false">
+    <div class="options">
+      <button class="dynamic-change-btn" id="view-dataset-btn">
+        VIEW DATASET
+      </button>
+      <button class="dynamic-change-btn" id="view-correlation-btn">
+        CORRELATIONS
+      </button>
+      <button class="dynamic-change-btn" id="view-plots" style="display: none">
+        PLOTS
+      </button>
+      <button class="dynamic-change-btn" id="meta-data-btn">META DATA</button>
+      <button class="dynamic-change-btn" id="build-model-btn">
+        BUILD MODEL
+      </button>
+    </div>
+
+    <div class="main">
+      <div id="model" class="model">
+        <form action="predict" method="post">
+          {% csrf_token %}
+
+          <div class="inputgrp hideName">
+            <h2 for="name">File Name</h2>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter dataset file name"
+              autocomplete="off"
+              value="{{filename}}"
+            />
+          </div>
+
+          <div class="inputgrp">
+            <h2>Model Type</h2>
+            <label for="model">Select Type of Model Output </label>
+            <div class="modelType">
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="regression"
+                  name="modelType"
+                  value="regression"
+                />
+                <label for="regression">Regression</label><br />
+              </div>
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="classification"
+                  name="modelType"
+                  value="classification"
+                />
+                <label for="classification">Classification</label><br />
+              </div>
+              <div class="grp">
+                <input
+                  type="radio"
+                  id="auto detect"
+                  name="modelType"
+                  value="auto detect"
+                />
+                <label for="auto detect">Auto Detect</label><br />
+              </div>
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <h2>Model</h2>
+            <label for="model">Select Model</label>
+            <div class="algorithmTypes">
+              <div class="grp reg">
+                <input type="radio" id="lr" name="algorithmType" value="lr" />
+                <label for="lr">Linear Regression</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="lrc" name="algorithmType" value="lrc" />
+                <label for="lrc">Logistic Regression (Classification)</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="rlr" name="algorithmType" value="rlr" />
+                <label for="rlr">Ridge & Lasso (Regression)</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="nbc" name="algorithmType" value="nbc" />
+                <label for="nbc">Naive Baye's (Classification)</label>
+              </div>
+              <div class="grp reg">
+                <input
+                  type="radio"
+                  id="knnr"
+                  name="algorithmType"
+                  value="knnr"
+                />
+                <label for="knnr">K-Nearest Neighbors Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input
+                  type="radio"
+                  id="knnc"
+                  name="algorithmType"
+                  value="knnc"
+                />
+                <label for="knnc">K-Nearest Neighbors Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="dtr" name="algorithmType" value="dtr" />
+                <label for="dtr">Decision Tree Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="dtc" name="algorithmType" value="dtc" />
+                <label for="dtc">Decision Tree Classifier </label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="rfr" name="algorithmType" value="rfr" />
+                <label for="rfr">Random Forest Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="rfc" name="algorithmType" value="rfc" />
+                <label for="rfc">Random Forest Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input
+                  type="radio"
+                  id="svmr"
+                  name="algorithmType"
+                  value="svmr"
+                />
+                <label for="svmr">Support Vector Machine Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input
+                  type="radio"
+                  id="svmc"
+                  name="algorithmType"
+                  value="svmc"
+                />
+                <label for="svmc">Support Vector Machine Classifier</label>
+              </div>
+              <div class="grp reg">
+                <input type="radio" id="xr" name="algorithmType" value="xr" />
+                <label for="xr">Xgboost Regressor</label>
+              </div>
+              <div class="grp cla">
+                <input type="radio" id="xc" name="algorithmType" value="xc" />
+                <label for="xc">Xgboost Classifier</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <h2>Features</h2>
+
+            <div class="features">
+              {% for i in columns %}
+              <div>
+                <input
+                  type="checkbox"
+                  name="features"
+                  id="feature-{{i}}"
+                  value="{{i}}"
+                />
+                <label onclick="changeBorder(i)" for="feature-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="inputgrp">
+            <h2>Labels</h2>
+
+            <div class="labels">
+              {% for i in columns %}
+              <div>
+                <input
+                  type="radio"
+                  name="labels"
+                  id="label-{{i}}"
+                  value="{{i}}"
+                />
+                <label
+                  id="label{{i}}"
+                  onclick="changeBorder(i)"
+                  for="label-{{i}}"
+                  >{{i}}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="checkboxgrp">
+            <h2>Testing</h2>
+            <div class="grp">
+              <input
+                class="checkbox"
+                type="checkbox"
+                name="forpredictions"
+                id="manuallyadddata"
+                value="manuallyadddata"
+                checked
+                required
+                disabled
+              />
+              <label for="manuallyadddata"
+                >I will add data manually after training (Recomended)</label
+              >
+            </div>
+
+            <div class="grp">
+              <input
+                class="checkbox"
+                type="checkbox"
+                name="forpredictions"
+                id="useuploadeddata"
+                value="useuploadeddata"
+                checked
+                disabled
+              />
+              <label for="useuploadeddata"
+                >Use certain percentage of uploaded data ( Default Value : 30% )
+              </label>
+            </div>
+            <div class="grp">
+              <input
+                type="checkbox"
+                name="confirm"
+                id="confirm"
+                class="checkbox"
+                required
+              />
+              <label for="confirm"
+                >We request you recheck your data and then build model</label
+              >
+            </div>
+          </div>
+
+          <div class="btns">
+            <button type="submit" class="build">Build</button>
+            <button type="reset" class="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="data-table" id="data-table">
+        <h1>Dataset</h1>
+        <div class="table-div">
+          <table>
+            <thead>
+              <tr>
+                {% for i in columns %}
+                <th>{{i}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data_table %}
+              <tr>
+                {% for j in i %}
+                <th>{{j}}</th>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="correlation" id="correlation">
+        <h1>Correlation</h1>
+
+        <div class="container">
+          <div class="table-div">
+            <table>
+              <thead>
+                <tr>
+                  {% for i in columns %}
+                  <th>{{i}}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in correlation_table %}
+                <tr>
+                  <th></th>
+
+                  {% for j in i %}
+                  <th>{{j}}</th>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="heatmap">
+            <img src="{% static './plots/heatmap.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div id="plots" class="plots">PLOTS</div>
+
+      <div class="lodeddata" id="lodeddata">
+        <h1>DataSet Details</h1>
+        <br />
+        <div class="datadetails">
+          <div class="subdatadetails">
+            <div class="datadetailsupper">
+              <div class="dataitem">&nbsp;&nbsp; File Name</div>
+              <div class="dataitem">&nbsp;&nbsp; {{filename}}.csv</div>
+              <div class="dataitem">&nbsp;&nbsp; Data Size</div>
+              <div class="dataitem">&nbsp;&nbsp; {{dataframe.size}}</div>
+              <div class="dataitem">&nbsp;&nbsp; Total Rows</div>
+              <div class="dataitem">&nbsp;&nbsp; {{rowscount}}</div>
+              <div class="dataitem">&nbsp;&nbsp; Total Columns</div>
+              <div class="dataitem">&nbsp;&nbsp; {{columncount}}</div>
+            </div>
+
+            <div>
+              <h3>Columns</h3>
+              <div class="datadetailslower">
+                <div class="columns">
+                  {% for i in columns %}
+                  <p>&nbsp;&nbsp; {{i}}</p>
+                  {% endfor %}
+                </div>
+                <div class="columns">
+                  {% for i in columntype %}
+                  <p>&nbsp;&nbsp; {{i}}</p>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("view-dataset-btn")
+        .addEventListener("click", myFunction1);
+      document
+        .getElementById("view-correlation-btn")
+        .addEventListener("click", myFunction2);
+      document
+        .getElementById("view-plots")
+        .addEventListener("click", myFunction3);
+      document
+        .getElementById("build-model-btn")
+        .addEventListener("click", myFunction4);
+      document
+        .getElementById("meta-data-btn")
+        .addEventListener("click", myFunction5);
+
+      function myFunction1() {
+        if (document.getElementById("data-table").style.display != "flex") {
+          document.getElementById("data-table").style.display = "flex";
+          document.getElementById("correlation").style.display = "none";
+          document.getElementById("plots").style.display = "none";
+          document.getElementById("model").style.display = "none";
+
+          document.getElementById("lodeddata").style.width = "30%";
+          document.getElementById("lodeddata").style.display = "none";
+        }
+      }
+
+      function myFunction2() {
+        if (document.getElementById("correlation").style.display != "flex") {
+          document.getElementById("data-table").style.display = "none";
+          document.getElementById("correlation").style.display = "flex";
+          document.getElementById("plots").style.display = "none";
+          document.getElementById("model").style.display = "none";
+
+          document.getElementById("lodeddata").style.width = "30%";
+          document.getElementById("lodeddata").style.display = "none";
+        }
+      }
+
+      function myFunction3() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "flex";
+        document.getElementById("model").style.display = "none";
+
+        document.getElementById("lodeddata").style.width = "30%";
+        document.getElementById("lodeddata").style.display = "none";
+      }
+
+      function myFunction4() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "none";
+        document.getElementById("model").style.display = "flex";
+
+        document.getElementById("lodeddata").style.display = "none";
+      }
+
+      function myFunction5() {
+        document.getElementById("data-table").style.display = "none";
+        document.getElementById("correlation").style.display = "none";
+        document.getElementById("plots").style.display = "none";
+        document.getElementById("model").style.display = "none";
+
+        document.getElementById("lodeddata").style.width = "35%";
+        document.getElementById("lodeddata").style.display = "flex";
+      }
+
+      function changeBorder(i) {
+        document.getElementById("feature" + i).style.background = "red";
+      }
+    </script>
+  </body>
+</html> -->

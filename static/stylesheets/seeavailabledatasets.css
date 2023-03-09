@@ -1,0 +1,114 @@
+body{
+    
+    --bgcol: black;
+    --txtcol: white;
+    --col1: #01b0f1;
+    --col2: green;
+    --col3: red;
+    background-color: var(--bgcol);
+    color: var(--txtcol);
+}
+
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+#search{
+    height: 25px;
+    width: 200px;
+    background-color: transparent;
+    border: 1.5px solid var(--txtcol);
+    color: var(--txtcol);
+}
+#search :hover{
+    border-color: var(--col1);
+}
+.searchbtn{
+    height: 30px;
+    width: 70px;
+    color: var(--txtcol);
+    background-color: var(--col1);
+    border: 1.5px solid transparent;
+}
+.searchbtn:hover{
+    background-color: transparent;
+    color: var(--col1);
+    border-color: var(--col1);
+}
+
+
+.file_structure{
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    margin: 30px 10px;
+}
+
+.file_structure > *{
+    /* background-color: red; */
+    /* display: inline-block; */
+    /* width: 10vw; */
+}
+
+.file_structure > .names{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid blue; */
+}
+.file_structure > .paths{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid blue; */
+}
+.file_structure > .directuse{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid blue; */
+}
+
+
+.names a{
+    /* border-top: 2px solid red;
+    border-bottom: 2px solid red; */
+    padding: 10px 0px;    
+    margin: 5px 0px;
+    
+    background-color: rgba(255, 255, 255, 0.026);
+
+
+}
+.paths a{
+    /* border-top: 2px solid red;
+    border-bottom: 2px solid red; */
+    /* padding: 10px;  */
+    margin: 5px 0px;
+
+    background-color: var(--col1);
+    /* background-color: var(--txtcol); */
+}
+.directuse a{
+    /* border-top: 2px solid red;
+    border-bottom: 2px solid red; */
+    /* padding: 10px;  */
+    margin: 5px 0px;
+
+    background-color: rgba(255, 255, 255, 0.026);
+}
+
+.paths a img{
+    width: 34px;
+}
+
+.directuse a img{
+    width: 34px;
+}

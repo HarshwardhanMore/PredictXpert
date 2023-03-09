@@ -1,0 +1,10 @@
+body{
+    
+    --bgcol: black;
+    --txtcol: white;
+    --col1: #01b0f1;
+    --col2: green;
+    --col3: red;
+    background-color: var(--bgcol);
+    color: var(--txtcol);
+}

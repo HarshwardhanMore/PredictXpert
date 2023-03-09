@@ -1,0 +1,10 @@
+Dataset : iris.csv.csv
+Total Rows : 150
+Total Columns : 5
+Columns : ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
+Column Types : sepal_length    float64
+sepal_width     float64
+petal_length    float64
+petal_width     float64
+species          object
+dtype: object

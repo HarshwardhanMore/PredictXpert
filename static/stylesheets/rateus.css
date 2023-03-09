@@ -1,0 +1,46 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 88vh;
+}
+
+
+.inputgrp input{
+    width: 80vw;
+}
+
+.inputgrp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns button{
+    height: 40px;
+    width: 200px;
+    border: 3px solid white;
+    cursor: pointer;
+    border-radius: 100px;
+    background-color: red;
+    color: white;
+    font-size: 15px;
+}
+.btns button:hover{
+
+    background-color: white;
+    border-color: rgb(0, 97, 253);
+    color: rgb(0, 97, 253);
+
+    transition: all;
+    transition-duration: 0.5s;
+}

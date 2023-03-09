@@ -1,0 +1,97 @@
+{% extends "navbar.html" %}
+
+{% load static %}
+
+{% block body %}
+  
+  <link rel="stylesheet" href="{% static 'stylesheets/rateus.css' %}">
+
+  {% comment %} <style>
+
+    body{
+      
+        --col1: #01b0f1;
+        --col2: green;
+        --col3: red;
+        --col4: #01b1f154;
+        background-color: var(--bgcol);
+        color: var(--txtcol);
+    }
+  
+  form{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 88vh;
+  }
+
+
+  .inputgrp input{
+      width: 80vw;
+  }
+
+  .inputgrp{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .btns{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .btns button{
+      height: 40px;
+      width: 200px;
+      border: 3px solid var(--col1);
+      cursor: pointer;
+      border-radius: 100px;
+      background-color: transparent;
+      color: var(--col1);
+      font-size: 15px;
+  }
+  .btns .submit:hover{
+
+      background-color: transparent;
+      border-color: var(--col2);
+      color: var(--col2);
+
+      transition: all;
+      transition-duration: 0.5s;
+  }
+  .btns .reset:hover{
+
+      background-color: transparent;
+      border-color: var(--col3);
+      color: var(--col3);
+
+      transition: all;
+      transition-duration: 0.5s;
+  }
+</style> {% endcomment %}
+
+
+  <form action="" method="post">
+
+    <div class="inputgrp">
+      <h1>Rate Us</h1>
+      <br><br>
+      <input id="rate" name="rate" type="range" min="0" max="5" step="1">
+    </div>
+
+    <div class="btns">
+      <button class="submit" type="submit">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="reset" type="reset">Reset</button>
+    </div>
+
+
+  </form>
+
+
+
+{% endblock body %}
