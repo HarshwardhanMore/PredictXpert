@@ -463,6 +463,10 @@ def predict(request):
 
         file_to_export.close()
 
+        print("HERE IS ANS")
+        print(y_test)
+        print(y_predict)
+
         predict_contest = {
             'y_test': y_test,
             'y_predict': y_predict,
