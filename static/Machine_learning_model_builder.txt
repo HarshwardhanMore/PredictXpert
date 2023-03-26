@@ -12,4 +12,9 @@ Test:Train Data Split : 0.3
 Features : ['sepal_length', 'sepal_width', 'petal_length']
 Label : petal_width
 Model : Linear Regression
-Model Score : 94.86
+Model Score : 92.67
+Test:Train Data Split : 0.3
+Features : ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+Label : species
+Model : K-Nearest Neighbors Classifier
+Model Score : 95.56
