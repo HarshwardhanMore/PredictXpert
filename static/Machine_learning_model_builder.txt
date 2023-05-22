@@ -1,20 +1,16 @@
 Dataset : iris.csv.csv
 Total Rows : 150
-Total Columns : 5
-Columns : ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
-Column Types : sepal_length    float64
-sepal_width     float64
-petal_length    float64
-petal_width     float64
-species          object
+Total Columns : 6
+Columns : ['Id', 'SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species']
+Column Types : Id                 int64
+SepalLengthCm    float64
+SepalWidthCm     float64
+PetalLengthCm    float64
+PetalWidthCm     float64
+Species           object
 dtype: object
 Test:Train Data Split : 0.3
-Features : ['sepal_length', 'sepal_width', 'petal_length']
-Label : petal_width
+Features : ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm']
+Label : PetalWidthCm
 Model : Linear Regression
-Model Score : 92.67
-Test:Train Data Split : 0.3
-Features : ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
-Label : species
-Model : K-Nearest Neighbors Classifier
-Model Score : 95.56
+Model Score : 93.46

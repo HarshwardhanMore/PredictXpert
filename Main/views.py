@@ -27,7 +27,7 @@ from sklearn import metrics
 from sklearn.metrics import accuracy_score
 
 import shutil
-  
+
 # Create your views here.
 
 file_name = ''
@@ -180,7 +180,9 @@ def ml(request):
     else:
         print("The file does not exist")
 
-    corr_table = dataframe.corr()
+    corr_table = ""
+    # if (dataframe):
+    # corr_table = dataframe.corr()
 
     correlation_table = []
     temp_list = []
